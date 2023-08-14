@@ -25,5 +25,5 @@ public class CustomerEntity {
 
     @OneToOne
     @JoinColumn(name = "id_order", insertable = false, updatable = false)
-    private OrderEntity order;
+    private PizzaOrderEntity order;
 }

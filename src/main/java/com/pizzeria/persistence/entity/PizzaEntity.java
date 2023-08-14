@@ -26,11 +26,9 @@ public class PizzaEntity {
     private BigDecimal price;
     @Column(columnDefinition = "TINYINT")
     private Boolean vegetarian;
-
+    @Column(columnDefinition = "TINYINT")
+    private Boolean vegan;
     @Column(nullable = false, columnDefinition = "TINYINT")
     private Boolean available;
 
-    @OneToOne
-    @JoinColumn(name = "id_item")
-    private OrderItemEntity orderItem;
 }

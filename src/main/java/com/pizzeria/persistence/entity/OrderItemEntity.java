@@ -33,7 +33,7 @@ public class OrderItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_order", insertable = false, updatable = false)
-    private OrderEntity order;
+    private PizzaOrderEntity order;
 
     @OneToOne
     @JoinColumn(name = "id_pizza", referencedColumnName = "id_pizza", insertable = false, updatable = false)
