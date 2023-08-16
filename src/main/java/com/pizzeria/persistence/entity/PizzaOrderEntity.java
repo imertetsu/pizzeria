@@ -1,5 +1,6 @@
 package com.pizzeria.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class PizzaOrderEntity {
     @JoinColumn(name = "id_customer", insertable = false, updatable = false)
     private CustomerEntity customer;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "order")
     private List<OrderItemEntity> orderItemEntityList;
 }

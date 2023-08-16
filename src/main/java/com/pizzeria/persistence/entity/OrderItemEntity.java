@@ -1,5 +1,7 @@
 package com.pizzeria.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,7 @@ public class OrderItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_order", insertable = false, updatable = false)
+    @JsonBackReference //
     private PizzaOrderEntity order;
 
     @OneToOne
