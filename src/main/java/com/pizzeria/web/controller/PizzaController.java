@@ -22,6 +22,10 @@ public class PizzaController {
     public ResponseEntity<List<PizzaEntity>> getAll(){
         return ResponseEntity.ok(this.pizzaService.getAllPizzas());
     }
+    @GetMapping("/availables")
+    public ResponseEntity<List<PizzaEntity>> getPizzasAvailables(){
+        return ResponseEntity.ok(this.pizzaService.getPizzasAvailables());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<PizzaEntity> getPizzaById(@PathVariable("id") int idPizza){
         if (this.pizzaService.pizzaExists(idPizza)){
@@ -29,6 +33,20 @@ public class PizzaController {
             return ResponseEntity.ok(pizza);
         }
         return ResponseEntity.badRequest().build();
+    }
+    @GetMapping("name/{pizzaName}")
+    public ResponseEntity<PizzaEntity> getPizzaAvailableByName(@PathVariable String pizzaName){
+        return ResponseEntity.ok(this.pizzaService.getPizzaByName(pizzaName));
+    }
+
+    @GetMapping("/ingredient/{description}")
+    public ResponseEntity<List<PizzaEntity>> getPizzaAvailableByDescription(@PathVariable String description){
+        return ResponseEntity.ok(this.pizzaService.getPizzaByDescription(description));
+    }
+
+    @GetMapping("/excluding/{description}")
+    public ResponseEntity<List<PizzaEntity>> getPizzasExcludingByDescription(@PathVariable String description){
+        return ResponseEntity.ok(this.pizzaService.getPizzasExcludingByDescription(description));
     }
 
     @PostMapping()

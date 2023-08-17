@@ -35,7 +35,7 @@ public class OrderItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_order", insertable = false, updatable = false)
-    @JsonBackReference //
+    @JsonBackReference //este es un dato que ira como subObjeto de otro y debe ir con esta anotacion para evitar el error de inversion infinita
     private PizzaOrderEntity order;
 
     @OneToOne

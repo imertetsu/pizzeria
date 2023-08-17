@@ -1,5 +1,6 @@
 package com.pizzeria.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,6 @@ public class CustomerEntity {
 
     @OneToOne
     @JoinColumn(name = "id_order", insertable = false, updatable = false)
+    @JsonManagedReference
     private PizzaOrderEntity order;
 }

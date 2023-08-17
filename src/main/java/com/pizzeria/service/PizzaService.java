@@ -20,13 +20,27 @@ public class PizzaService {
     }
     public List<PizzaEntity> getAllPizzas(){
         //return this.jdbcTemplate.query("SELECT * FROM pizza;", new BeanPropertyRowMapper<>(PizzaEntity.class));
+        System.out.println(this.pizzaRepository.countByVeganTrue());
         return this.pizzaRepository.findAll();
+    }
+    public List<PizzaEntity> getPizzasAvailables(){
+        return this.pizzaRepository.findAllByAvailableTrueOrderByPrice();
     }
     public PizzaEntity getPizza(int idPizza){
         return this.pizzaRepository.findById(idPizza).orElse(null);
     }
+    public PizzaEntity getPizzaByName(String name){
+        return this.pizzaRepository.findAllByAvailableTrueAndNameIgnoreCase(name);
+    }
     public PizzaEntity save(PizzaEntity pizzaEntity){
         return this.pizzaRepository.save(pizzaEntity);
+    }
+    public List<PizzaEntity> getPizzaByDescription(String description){
+        return this.pizzaRepository.findAllByAvailableTrueAndDescriptionContainsIgnoreCase(description);
+    }
+
+    public List<PizzaEntity> getPizzasExcludingByDescription(String description){
+        return this.pizzaRepository.findAllByAvailableTrueAndDescriptionNotContainsIgnoreCase(description);
     }
 
     public boolean pizzaExists(int idPizza){

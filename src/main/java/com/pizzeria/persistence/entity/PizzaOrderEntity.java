@@ -1,5 +1,7 @@
 package com.pizzeria.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -31,11 +33,12 @@ public class PizzaOrderEntity {
     @Column(name = "additional_notes", length = 200)
     private String additionalNotes;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer", insertable = false, updatable = false)
+    @JsonBackReference
     private CustomerEntity customer;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "order")
+    @JsonManagedReference//la que contiene los items o los datos de otra entidad debe ir con esta anotacion para evitar el error de inversion infinita
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderItemEntity> orderItemEntityList;
 }

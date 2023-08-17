@@ -24,4 +24,12 @@ public class PizzaOrderController {
     public ResponseEntity<List<PizzaOrderEntity>> getOrders(){
         return ResponseEntity.ok(this.pizzaOrderService.getAllOrders());
     }
+    @GetMapping("/date")
+    public ResponseEntity<List<PizzaOrderEntity>> getOrdersByDate(){
+        return ResponseEntity.ok(this.pizzaOrderService.getOrdersAfter());
+    }
+    @GetMapping("/outside")
+    public ResponseEntity<List<PizzaOrderEntity>> getOrdersByMethodsOutside(){
+        return ResponseEntity.ok(this.pizzaOrderService.getOrdersByMethodOutside());
+    }
 }
