@@ -6,6 +6,7 @@ import com.pizzeria.service.PizzaOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,5 +32,10 @@ public class PizzaOrderController {
     @GetMapping("/outside")
     public ResponseEntity<List<PizzaOrderEntity>> getOrdersByMethodsOutside(){
         return ResponseEntity.ok(this.pizzaOrderService.getOrdersByMethodOutside());
+    }
+
+    @GetMapping("/customer/{customerId}")
+    public ResponseEntity<List<PizzaOrderEntity>> getCustomerOrders(@PathVariable("customerId") String customerId){
+        return ResponseEntity.ok(this.pizzaOrderService.getCustomerOrders(customerId));
     }
 }

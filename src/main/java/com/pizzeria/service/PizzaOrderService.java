@@ -36,4 +36,7 @@ public class PizzaOrderService {
         List<String> methods = Arrays.asList(DELIVERY, CARRYOUT);
         return this.pizzaOrderRepository.findAllByMethodIn(methods);
     }
+    public List<PizzaOrderEntity> getCustomerOrders(String customerId){
+        return this.pizzaOrderRepository.findCustomerOrders(customerId);
+    }
 }

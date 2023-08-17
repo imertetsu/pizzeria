@@ -3,6 +3,7 @@ package com.pizzeria.web.controller;
 import com.pizzeria.persistence.entity.PizzaEntity;
 import com.pizzeria.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,16 @@ public class PizzaController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<PizzaEntity>> getAll(){
-        return ResponseEntity.ok(this.pizzaService.getAllPizzas());
+    public ResponseEntity<Page<PizzaEntity>> getAll(@RequestParam(defaultValue = "0") int page,
+                                                    @RequestParam(defaultValue = "4") int elements){
+        return ResponseEntity.ok(this.pizzaService.getAllPizzas(page, elements));
     }
     @GetMapping("/availables")
-    public ResponseEntity<List<PizzaEntity>> getPizzasAvailables(){
-        return ResponseEntity.ok(this.pizzaService.getPizzasAvailables());
+    public ResponseEntity<Page<PizzaEntity>> getPizzasAvailables(@RequestParam(defaultValue = "0") int page,
+                                                                 @RequestParam(defaultValue = "4") int elements,
+                                                                 @RequestParam(defaultValue = "price") String sortBy,
+                                                                 @RequestParam(defaultValue = "ASC") String sortDirection){
+        return ResponseEntity.ok(this.pizzaService.getPizzasAvailables(page, elements, sortBy, sortDirection));
     }
     @GetMapping("/{id}")
     public ResponseEntity<PizzaEntity> getPizzaById(@PathVariable("id") int idPizza){
