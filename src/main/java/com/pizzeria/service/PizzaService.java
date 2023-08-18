@@ -3,6 +3,7 @@ package com.pizzeria.service;
 import com.pizzeria.persistence.entity.PizzaEntity;
 import com.pizzeria.persistence.repository.PizzaPagSortRepository;
 import com.pizzeria.persistence.repository.PizzaRepository;
+import com.pizzeria.service.dto.UpdatePizzaPriceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 //import java.awt.print.Pageable;
 import java.util.List;
@@ -47,10 +49,16 @@ public class PizzaService {
     public PizzaEntity save(PizzaEntity pizzaEntity){
         return this.pizzaRepository.save(pizzaEntity);
     }
+
+    @Transactional //@Transactional de springframework no confundir
+    //la anotacion @Transactional nos garantiza las propiedades ACID que se deben cumplir a la hora de realizar una transaccion
+    //Atomicity, Consistency, Isolation, Durability, es decir que no queden a medias, realizan rollback si algo falla etc.
+    public void updatePizzaPrice(UpdatePizzaPriceDTO pizzaPriceDTO){
+        this.pizzaRepository.updatePizzaPrice(pizzaPriceDTO);
+    }
     public List<PizzaEntity> getPizzaByDescription(String description){
         return this.pizzaRepository.findAllByAvailableTrueAndDescriptionContainsIgnoreCase(description);
     }
-
     public List<PizzaEntity> getPizzasExcludingByDescription(String description){
         return this.pizzaRepository.findAllByAvailableTrueAndDescriptionNotContainsIgnoreCase(description);
     }
