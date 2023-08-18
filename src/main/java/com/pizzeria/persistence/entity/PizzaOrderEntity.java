@@ -38,7 +38,8 @@ public class PizzaOrderEntity {
     @JsonBackReference
     private CustomerEntity customer;
 
-    @JsonManagedReference//la que contiene los items o los datos de otra entidad debe ir con esta anotacion para evitar el error de inversion infinita
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @JsonManagedReference//la que contiene los items o los datos de otra entidad debe ir con esta anotacion para evitar el error de inversion infinita
+    @OrderBy("price DESC") //esto ordena la lista de OrderItem por el precio
     private List<OrderItemEntity> orderItemEntityList;
 }
