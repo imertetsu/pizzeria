@@ -24,8 +24,4 @@ public class CustomerEntity {
     @Column(name = "phone_number", nullable = false, length = 20)
     private String phoneNumber;
 
-    @OneToOne
-    @JoinColumn(name = "id_order", insertable = false, updatable = false)
-    @JsonManagedReference
-    private PizzaOrderEntity order;
 }
