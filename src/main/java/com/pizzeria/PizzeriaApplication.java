@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableJpaAuditing //para poder conocer que datos cambiaron, quien cambio, etc para aplicar a los Entities
+//este Auditing solo funciona con los metodos de Sprint Data Repository y no asi con queries nativos
 public class PizzeriaApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
