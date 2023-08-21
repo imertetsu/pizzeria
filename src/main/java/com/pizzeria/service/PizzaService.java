@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 //import java.awt.print.Pageable;
@@ -50,9 +51,10 @@ public class PizzaService {
         return this.pizzaRepository.save(pizzaEntity);
     }
 
-    @Transactional //@Transactional de springframework no confundir
     //la anotacion @Transactional nos garantiza las propiedades ACID que se deben cumplir a la hora de realizar una transaccion
     //Atomicity, Consistency, Isolation, Durability, es decir que no queden a medias, realizan rollback si algo falla etc.
+    //@Transactional de springframework no confundir
+    @Transactional//(noRollbackFor = EmailApiException.class, propagation = Propagation.REQUIRED)
     public void updatePizzaPrice(UpdatePizzaPriceDTO pizzaPriceDTO){
         this.pizzaRepository.updatePizzaPrice(pizzaPriceDTO);
     }
