@@ -21,6 +21,7 @@ public class PizzaController {
     }
 
     @GetMapping()
+    //@CrossOrigin(origins = { "http://localhost:4200/"}) //esto es para especificar el endpoint
     public ResponseEntity<Page<PizzaEntity>> getAll(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "4") int elements){
         return ResponseEntity.ok(this.pizzaService.getAllPizzas(page, elements));
