@@ -30,6 +30,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//SPRINT SECURITY
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//JWT
+	implementation 'com.auth0:java-jwt:4.4.0'
+	//group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
 }
 
 tasks.named('test') {

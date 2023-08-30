@@ -29,6 +29,7 @@ public class UserSecurityService implements UserDetailsService {//Spring Securit
                 .orElseThrow(() -> new UsernameNotFoundException("User "+ username + " not found."));
         String[] roles = userEntity.getRoles().stream().map(UserRoleEntity::getRole).toArray(String[]::new);
 
+        System.out.println("toString: "+userEntity.toString());
         return User.builder()
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())

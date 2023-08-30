@@ -5,6 +5,7 @@ import com.pizzeria.persistence.projection.OrderSummary;
 import com.pizzeria.persistence.repository.PizzaOrderRepository;
 import com.pizzeria.service.dto.RandomOrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +40,7 @@ public class PizzaOrderService {
         List<String> methods = Arrays.asList(DELIVERY, CARRYOUT);
         return this.pizzaOrderRepository.findAllByMethodIn(methods);
     }
+    @Secured("ROLE_ADMIN")//esto es para solo autorizar al admin pueda realizar este metodo
     public List<PizzaOrderEntity> getCustomerOrders(String customerId){
         return this.pizzaOrderRepository.findCustomerOrders(customerId);
     }
