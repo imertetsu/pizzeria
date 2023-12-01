@@ -57,5 +57,4 @@ public class UserSecurityService implements UserDetailsService {//Spring Securit
         }
         return authorities;
     }
-
 }
