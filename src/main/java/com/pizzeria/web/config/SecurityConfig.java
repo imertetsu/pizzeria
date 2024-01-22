@@ -37,6 +37,7 @@ public class SecurityConfig {
                             //con un * solo permitimos el primer nivel con ** permitimos todo para adelante de la ruta
                             //.requestMatchers("/welcome").permitAll()
                             .requestMatchers("/auth/**").permitAll()
+                            .requestMatchers("/**").permitAll()
                             .requestMatchers("/customers/**").hasAnyRole("ADMIN", "CUSTOMER")
                             .requestMatchers(HttpMethod.GET, "/pizzas/*").hasAnyRole(roles)
                             .requestMatchers(HttpMethod.GET, "/pizzas/**").hasAnyRole("ADMIN", "CUSTOMER")

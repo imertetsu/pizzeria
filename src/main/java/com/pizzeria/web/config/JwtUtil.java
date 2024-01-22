@@ -28,7 +28,6 @@ public class JwtUtil {
             JWT.require(ALGORIIHM)
                     .build()
                     .verify(jwt);
-
             return true;
         }catch (JWTVerificationException e){
             return false;
