@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@Tag(name = "Ejemplo Controller", description = "Operaciones relacionadas con el ejemplo")
+@Tag(name = "Auth Controller", description = "In this controller we are going to login a user and register")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -29,7 +29,7 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
-    @Operation(summary = "foo", description = "description")
+    @Operation(summary = "Login a user", description = "You can login throw username and password")
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO){
         UsernamePasswordAuthenticationToken login = new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword());
