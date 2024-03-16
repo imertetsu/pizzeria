@@ -19,6 +19,7 @@ public class CustomerService {
         return this.customerRepository.findAll();
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_CUSTOMER"})
     public CustomerEntity getCustomerByPhone(String phone){
         return this.customerRepository.findByPhone(phone);
     }

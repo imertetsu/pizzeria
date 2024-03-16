@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("API Documentation")
                         .version("1.0")
-                        .description("Descripción de la API")
+                        .description("API to manage customers, pizzas, orders and users of a pizzeria.")
                         .contact(new Contact().name("Imer Coaguila").url("https://portafoliotetsu.web.app").email("imertpro@gmail.com")));
     }
 }

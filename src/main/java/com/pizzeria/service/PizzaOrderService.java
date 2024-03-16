@@ -25,17 +25,18 @@ public class PizzaOrderService {
     public PizzaOrderService(PizzaOrderRepository pizzaOrderRepository){
         this.pizzaOrderRepository = pizzaOrderRepository;
     }
-
+    @Secured("ROLE_ADMIN")
     public List<PizzaOrderEntity> getAllOrders(){
         List<PizzaOrderEntity> listOrders = this.pizzaOrderRepository.findAll();
         listOrders.forEach(order -> System.out.println(order.getCustomer().getName()));
         return listOrders;
     }
-
+    @Secured("ROLE_ADMIN")
     public List<PizzaOrderEntity> getOrdersAfter(){
         LocalDateTime today = LocalDateTime.now();
         return this.pizzaOrderRepository.findAllByDateAfter(today);
     }
+    @Secured("ROLE_ADMIN")
     public List<PizzaOrderEntity> getOrdersByMethodOutside(){
         List<String> methods = Arrays.asList(DELIVERY, CARRYOUT);
         return this.pizzaOrderRepository.findAllByMethodIn(methods);
@@ -47,6 +48,8 @@ public class PizzaOrderService {
     public OrderSummary getSummaryOrder(int orderId){
         return this.pizzaOrderRepository.findSummary(orderId);
     }
+
+    @Secured("random_order")
     @Transactional
     public boolean saveRandomOrder(RandomOrderDTO randomOrderDTO){
         return this.pizzaOrderRepository.saveRandomOrder(randomOrderDTO.getIdCustomer(), randomOrderDTO.getMethod());

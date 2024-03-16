@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Auth Controller", description = "In this section we are going to login with an authorized user")
+@Tag(name = "Authentication Controller", description = "In this section we are going to login with a user")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
