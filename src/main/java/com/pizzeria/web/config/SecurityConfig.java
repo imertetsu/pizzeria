@@ -35,7 +35,7 @@ public class SecurityConfig {
                     customizeRequests
                             //aca ya no ponemos /api/ porque esa es la raiz, se pone directamente la ruta del controlador
                             //con un * solo permitimos el primer nivel con ** permitimos todo para adelante de la ruta
-                            .requestMatchers("/auth/login").permitAll()
+                            .requestMatchers("/**").permitAll()
                             .requestMatchers("/customers/**").hasAnyRole("ADMIN", "CUSTOMER")
                             .requestMatchers(HttpMethod.GET, "/pizzas/*").hasAnyRole(roles)
                             .requestMatchers(HttpMethod.GET, "/pizzas/**").hasAnyRole("ADMIN", "CUSTOMER")
