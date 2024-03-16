@@ -24,7 +24,15 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("API Documentation")
                         .version("1.0")
-                        .description("API to manage customers, pizzas, orders and users of a pizzeria.")
+                        .description("""
+                                API to manage customers, pizzas, orders and users of a pizzeria.
+                                Here are some recommendations to use the API, there are roles for a user examples:
+                                 * ADMIN
+                                 * CUSTOMER
+                                 * CHEF
+                                \n To execute an endpoint with a secured role, you need to login with the user who has the required role.
+                                \n Each endpoint has a description where you can see which role is required
+                                \n After you log in with the correct credentials, a token is retrieved for you to use and configure on the green Authorize button below this section. 👇""")
                         .contact(new Contact().name("Imer Coaguila").url("https://portafoliotetsu.web.app").email("imertpro@gmail.com")));
     }
 }

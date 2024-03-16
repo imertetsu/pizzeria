@@ -49,7 +49,7 @@ public class PizzaOrderService {
         return this.pizzaOrderRepository.findSummary(orderId);
     }
 
-    @Secured("random_order")
+    @Secured("ROLE_CUSTOMER")
     @Transactional
     public boolean saveRandomOrder(RandomOrderDTO randomOrderDTO){
         return this.pizzaOrderRepository.saveRandomOrder(randomOrderDTO.getIdCustomer(), randomOrderDTO.getMethod());

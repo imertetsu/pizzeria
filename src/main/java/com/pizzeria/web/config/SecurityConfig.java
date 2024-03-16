@@ -42,7 +42,7 @@ public class SecurityConfig {
                             .requestMatchers(HttpMethod.POST, "/pizzas/**").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
                             .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                            .requestMatchers("/pizzaOrders/random").hasAuthority("random_order")
+                            .requestMatchers("/pizzaOrders/random").hasRole("CUSTOMER")
                             .requestMatchers("/pizzaOrders/**").hasRole("ADMIN")
                             .anyRequest().authenticated();
                 }).csrf(AbstractHttpConfigurer::disable)
