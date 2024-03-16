@@ -30,7 +30,10 @@ public class PizzaService {
         this.pizzaRepository = pizzaRepository;
         this.pizzaPagSortRepository = pizzaPagSortRepository;
     }
-    public Page<PizzaEntity> getAllPizzas(int page, int elements){
+    public List<PizzaEntity> getAllPizzas(){
+        return this.pizzaRepository.findAll();
+    }
+    public Page<PizzaEntity> getPizzasByPages(int page, int elements){
         //return this.jdbcTemplate.query("SELECT * FROM pizza;", new BeanPropertyRowMapper<>(PizzaEntity.class));
         System.out.println(this.pizzaRepository.countByVeganTrue());
         Pageable pageable = (Pageable) PageRequest.of(page, elements);

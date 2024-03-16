@@ -35,14 +35,13 @@ public class SecurityConfig {
                     customizeRequests
                             //aca ya no ponemos /api/ porque esa es la raiz, se pone directamente la ruta del controlador
                             //con un * solo permitimos el primer nivel con ** permitimos todo para adelante de la ruta
-                            //.requestMatchers("/welcome").permitAll()
-                            .requestMatchers("/auth/**").permitAll()
-                            .requestMatchers("/**").permitAll()
+                            .requestMatchers("/auth/login").permitAll()
                             .requestMatchers("/customers/**").hasAnyRole("ADMIN", "CUSTOMER")
                             .requestMatchers(HttpMethod.GET, "/pizzas/*").hasAnyRole(roles)
                             .requestMatchers(HttpMethod.GET, "/pizzas/**").hasAnyRole("ADMIN", "CUSTOMER")
                             .requestMatchers(HttpMethod.POST, "/pizzas/**").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                             .requestMatchers("/pizzaOrders/random").hasAuthority("random_order")
                             .requestMatchers("/pizzaOrders/**").hasRole("ADMIN")
                             .anyRequest().authenticated();
@@ -51,6 +50,7 @@ public class SecurityConfig {
                 .sessionManagement(sesion -> sesion.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);//httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
+
     }
     /*@Bean //estos son usuarios en memorias
     public UserDetailsService memoryUsers(){

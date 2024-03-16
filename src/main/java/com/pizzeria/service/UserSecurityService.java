@@ -39,7 +39,6 @@ public class UserSecurityService implements UserDetailsService {//Spring Securit
                 .disabled(userEntity.getDisabled())
                 .build();
     }
-
     private String[] getAuthorities(String role){
         if("ADMIN".equals(role) || "CUSTOMER".equals(role)){
             return new String[] {"random_order"};

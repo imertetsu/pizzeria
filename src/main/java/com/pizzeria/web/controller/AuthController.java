@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@Tag(name = "Auth Controller", description = "In this controller we are going to login a user and register")
+@Tag(name = "Auth Controller", description = "In this section we are going to login with an authorized user")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -42,10 +42,5 @@ public class AuthController {
         System.out.println("JWT: "+jwt);
 
         return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, "Bearer " + jwt).body(jwt);
-    }
-
-    @GetMapping("/welcome")
-    public String welcome(){
-        return "hello world";
     }
 }

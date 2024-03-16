@@ -21,11 +21,18 @@ public class PizzaController {
     }
 
     @GetMapping()
-    //@CrossOrigin(origins = { "http://localhost:4200/"}) //esto es para especificar el endpoint
-    public ResponseEntity<Page<PizzaEntity>> getAll(@RequestParam(defaultValue = "0") int page,
-                                                    @RequestParam(defaultValue = "4") int elements){
-        return ResponseEntity.ok(this.pizzaService.getAllPizzas(page, elements));
+    public ResponseEntity<List<PizzaEntity>> getAll(){
+        return ResponseEntity.ok(this.pizzaService.getAllPizzas());
     }
+
+
+    @GetMapping("/getByPages")
+    //@CrossOrigin(origins = { "http://localhost:4200/"}) //esto es para especificar el endpoint
+    public ResponseEntity<Page<PizzaEntity>> getPizzas(@RequestParam(defaultValue = "0") int page,
+                                                    @RequestParam(defaultValue = "4") int elements){
+        return ResponseEntity.ok(this.pizzaService.getPizzasByPages(page, elements));
+    }
+
     @GetMapping("/availables")
     public ResponseEntity<Page<PizzaEntity>> getPizzasAvailables(@RequestParam(defaultValue = "0") int page,
                                                                  @RequestParam(defaultValue = "4") int elements,

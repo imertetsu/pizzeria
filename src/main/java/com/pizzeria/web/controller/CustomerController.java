@@ -4,6 +4,7 @@ import com.pizzeria.persistence.entity.CustomerEntity;
 import com.pizzeria.persistence.entity.PizzaOrderEntity;
 import com.pizzeria.service.CustomerService;
 import com.pizzeria.service.PizzaOrderService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "Customer CRUD controller", description = "In this section we are going to create, read, update and delete a customer")
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
