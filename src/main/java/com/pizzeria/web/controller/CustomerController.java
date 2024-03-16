@@ -29,17 +29,17 @@ public class CustomerController {
         this.customerService = customerService;
         this.pizzaOrderService = pizzaOrderService;
     }
-    @Operation(summary = "Get all customers", description = "We are going to retrieve a list of all customers")
+    @Operation(summary = "Get all customers. Role CUSTOMER or ADMIN Required", description = "We are going to retrieve a list of all customers")
     @GetMapping()
     public ResponseEntity<List<CustomerEntity>> getAllCustomers(){
         return ResponseEntity.ok(this.customerService.getAllCustomers());
     }
-    @Operation(summary = "Get a customer by phone number", description = "We are going to retrieve a customer by his/her phone number")
+    @Operation(summary = "Get a customer by phone number. Role CUSTOMER or ADMIN Required", description = "We are going to retrieve a customer by his/her phone number")
     @GetMapping("/phone/{phone}")
     public ResponseEntity<CustomerEntity> getCustomerByPhone(@PathVariable("phone") String phone){
         return ResponseEntity.ok(this.customerService.getCustomerByPhone(phone));
     }
-    @Operation(summary = "Get a customer by id", description = "We are going to retrieve a customer by his/her id")
+    @Operation(summary = "Get a list of pizza orders by customer id. **Role CUSTOMER Required**", description = "We are going to retrieve a list of pizza orders by customer id")
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<PizzaOrderEntity>> getCustomerOrders(@PathVariable("customerId") String customerId){
         return ResponseEntity.ok(this.pizzaOrderService.getCustomerOrders(customerId));

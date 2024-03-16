@@ -24,35 +24,35 @@ public class PizzaOrderController {
         this.pizzaOrderService = pizzaOrderService;
     }
 
-    @Operation(summary = "Get all pizza orders", description = "We are going to retrieve a list of all pizza orders")
+    @Operation(summary = "Get all pizza orders. Role ADMIN Required", description = "We are going to retrieve a list of all pizza orders")
     @GetMapping()
     public ResponseEntity<List<PizzaOrderEntity>> getOrders(){
         return ResponseEntity.ok(this.pizzaOrderService.getAllOrders());
     }
-    @Operation(summary = "Get all pizza orders by date", description = "We are going to retrieve a list of all pizza orders by its date")
+    @Operation(summary = "Get all pizza orders by date. Role ADMIN Required", description = "We are going to retrieve a list of all pizza orders by its date")
     @GetMapping("/date")
     public ResponseEntity<List<PizzaOrderEntity>> getOrdersByDate(){
         return ResponseEntity.ok(this.pizzaOrderService.getOrdersAfter());
     }
-    @Operation(summary = "Get all pizza orders outside", description = "We are going to retrieve a list of all pizza orders outside")
+    @Operation(summary = "Get all pizza orders outside. Role ADMIN Required", description = "We are going to retrieve a list of all pizza orders outside")
     @GetMapping("/outside")
     public ResponseEntity<List<PizzaOrderEntity>> getOrdersByMethodsOutside(){
         return ResponseEntity.ok(this.pizzaOrderService.getOrdersByMethodOutside());
     }
 
-    @Operation(summary = "Get all pizza orders by a customer", description = "We are going to retrieve a list of all pizza orders by a customer id")
+    @Operation(summary = "Get all pizza orders by a customer. Role ADMIN Required", description = "We are going to retrieve a list of all pizza orders by a customer id")
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<PizzaOrderEntity>> getCustomerOrders(@PathVariable("customerId") String customerId){
         return ResponseEntity.ok(this.pizzaOrderService.getCustomerOrders(customerId));
     }
 
-    @Operation(summary = "Get pizza order by id", description = "We are going to retrieve a pizza order by its id")
+    @Operation(summary = "Get pizza order by id. Role ADMIN Required", description = "We are going to retrieve a pizza order by its id")
     @GetMapping("/customizedOrder/{orderId}")
     public ResponseEntity<OrderSummary> getSummaryOrder(@PathVariable("orderId") int orderId){
         return ResponseEntity.ok(this.pizzaOrderService.getSummaryOrder(orderId));
     }
 
-    @Operation(summary = "Save a random pizza order", description = "We are going to save a random pizza order with 20% OFF")
+    @Operation(summary = "Save a random pizza order. Role ADMIN Required", description = "We are going to save a random pizza order with 20% OFF")
     @PostMapping("/random")
     public ResponseEntity<Boolean> randomPizzaOrder(@RequestBody RandomOrderDTO randomOrderDTO){
         return ResponseEntity.ok(this.pizzaOrderService.saveRandomOrder(randomOrderDTO));

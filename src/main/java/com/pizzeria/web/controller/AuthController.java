@@ -29,7 +29,7 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
-    @Operation(summary = "Login a user", description = "You can log in with username and password.")
+    @Operation(summary = "Login a user. ROLE NOT REQUIRED", description = "You can log in with username and password.")
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO){
         UsernamePasswordAuthenticationToken login = new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword());
